@@ -1,0 +1,9 @@
+{
+  "name": "netlify-template",
+  "version": "1.0.0",
+  "workspaces": [
+    "api",
+    "client",
+    "database"
+  ]
+}
