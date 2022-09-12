@@ -1,4 +1,4 @@
-const messages = require('./messages');
+const { errors } = require('./messages');
 
 module.exports = {
   empty: () => ({
@@ -10,7 +10,7 @@ module.exports = {
     body: {
       ok: false,
       data: null,
-      messages: [messages.errors.actionNotFound]
+      messages: [errors.routing.actionNotFound]
     }
   }),
   success: (data, messages) => ({

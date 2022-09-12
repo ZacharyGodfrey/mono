@@ -1,5 +1,14 @@
 const { success } = require('../helpers/response');
 
-module.exports = async (context, input) => {
-  return success({ abc: 123, def: 456 });
+module.exports = {
+  authenticate: true,
+  execute: async (context, input) => {
+    const { user } = context;
+
+    return success({
+      serverTime: new Date().toISOString(),
+      user,
+      input
+    });
+  }
 };
