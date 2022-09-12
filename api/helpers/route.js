@@ -1,4 +1,4 @@
-const { notFound } = require('./helpers/response');
+const { notFound } = require('./response');
 
 module.exports = async (actions, body) => {
   const { action: actionName, token, data } = body;
