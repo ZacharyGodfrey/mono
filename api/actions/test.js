@@ -3,10 +3,10 @@ const { success } = require('../helpers/response');
 module.exports = {
   authenticate: true,
   execute: async (context, input) => {
-    const { user } = context;
+    const { db, user } = context;
 
     return success({
-      serverTime: new Date().toISOString(),
+      now: new Date().toISOString(),
       user,
       input
     });

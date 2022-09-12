@@ -1,4 +1,5 @@
-const api = require('..');
+const db = require('../../database')();
+const api = require('..')(db);
 
 /*
   Documentation:

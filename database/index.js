@@ -1,3 +1,7 @@
-module.exports = {
-  // TODO: Implement database functionality
+module.exports = () => {
+  const connection = {}; // TODO: Create connection
+
+  return {
+    // Database interface
+  };
 };
