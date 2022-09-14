@@ -1,10 +1,7 @@
-const db = require('database')();
-const api = require('api')(db);
+const api = require('..');
 
-/*
-  Documentation:
-  https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html#apigateway-example-event
-*/
+// Documentation:
+// https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html#apigateway-example-event
 module.exports = async (event) => {
   const { httpMethod, body: input } = event;
   const { status, body: output } = await api(httpMethod, input);
