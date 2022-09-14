@@ -1,7 +1,9 @@
-module.exports = () => {
-  const connection = {}; // TODO: Create connection
+// TODO: Create connection
+const connection = {};
 
-  return {
-    // Database interface
-  };
+const dbInterface = {
+  // TODO: Implement interface
 };
+
+// Module exports initialized object to ensure single database connection
+module.exports = dbInterface;
