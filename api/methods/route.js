@@ -1,5 +1,5 @@
 const { notFound, error } = require('./responses');
-const { authenticate } = require('./methods/auth');
+const { authenticate } = require('./auth');
 
 module.exports = async (context, actions, body) => {
   const { now, env, db } = context;
