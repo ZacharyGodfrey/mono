@@ -1,4 +1,4 @@
-const db = require('database');
+const db = require('../../../database/index');
 const api = require('../../index');
 
 const express = require('express');
