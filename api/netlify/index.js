@@ -1,10 +1,11 @@
+const db = require('database');
 const api = require('..');
 
 // Documentation:
 // https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html#apigateway-example-event
 module.exports = async (event) => {
-  const { httpMethod, body: input } = event;
-  const { status, body: output } = await api(httpMethod, input);
+  const now = Date.now();
+  const { status, body } = await api(now, process.env, db, event.httpMethod, event.body);
 
   return {
     statusCode: status,
@@ -14,6 +15,6 @@ module.exports = async (event) => {
       'x-powered-by': ''
     },
     isBase64Encoded: false,
-    body: output === null ? '' : JSON.stringify(output, null, 2)
+    body: body === null ? '' : JSON.stringify(body, null, 2)
   };
 };

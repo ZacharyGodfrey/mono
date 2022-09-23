@@ -1,4 +1,4 @@
-const { errors } = require('./messages');
+const { errors } = require('./constants');
 
 module.exports = {
   empty: () => ({
