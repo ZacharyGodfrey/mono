@@ -1,3 +1,3 @@
 module.exports = {
-  'test': require('./test')
+  'debug': require('./debug')
 };
