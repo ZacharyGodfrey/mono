@@ -13,6 +13,10 @@ Any code change pushed to the `main` branch of the repo will trigger a new build
 - API
   - [GitHub Actions](https://github.com/features/actions) for running unit tests and coverage reports on each pull request
   - [Netlify Functions](https://www.netlify.com/products/functions) for serverless hosting
+  - Unit Testing
+    - [NYC]() for running unit tests
+    - [Mocha]() for generating test coverage reports
+    - [Chai](https://www.npmjs.com/package/chai), [Sinon](https://www.npmjs.com/package/sinon), and [Proxyquire](https://www.npmjs.com/package/proxyquire) for testing functionality
 - Client
   - [Eleventy](https://www.11ty.dev) for static site generation
   - **TBD** for content management
