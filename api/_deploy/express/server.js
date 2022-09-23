@@ -1,5 +1,5 @@
-const db = require('../../../database/index');
-const api = require('../../index');
+const db = require('../../../database/src/index');
+const api = require('../../src/index');
 
 const express = require('express');
 
@@ -17,9 +17,8 @@ server.use(async (req, res, next) => {
 
   const now = Date.now();
   const { status, body } = await api(now, process.env, db, req.method, req.body);
-  const data = body === null ? '' : JSON.stringify(body, null, 2);
 
-  res.status(status).send(data);
+  res.status(status).send(body);
 });
 
 server.listen(port, () => {
