@@ -15,14 +15,13 @@ module.exports = async (now, processEnv, db, httpMethod, requestBody) => {
 
       case 'POST': return await route(context, actions, requestBody);
 
-      default: return error([errors.routing.nonPostRequest]);
+      default: return error(errors.routing.nonPostRequest);
     }
   } catch (e) {
     console.error(e);
 
     const isProduction = context && context.env && context.env.isProduction;
-    const messages = !isProduction ? [errors.default, e.message] : [errors.default];
 
-    return error(messages);
+    return isProduction ? error() : error(e.message);
   }
 };

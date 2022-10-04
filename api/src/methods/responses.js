@@ -12,23 +12,23 @@ module.exports = {
     body: toJson({
       ok: false,
       data: null,
-      messages: [errors.routing.actionNotFound]
+      message: errors.routing.actionNotFound
     })
   }),
-  success: (data, messages) => ({
+  success: (data, message) => ({
     status: 200,
     body: toJson({
       ok: true,
       data,
-      messages: messages || []
+      message: message || null
     })
   }),
-  error: (messages) => ({
+  error: (message) => ({
     status: 200,
     body: toJson({
       ok: false,
       data: null,
-      messages: messages || []
+      message: message || errors.default
     })
   })
 };

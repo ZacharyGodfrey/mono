@@ -53,7 +53,7 @@ The following rules apply to responses:
 - The `ok` body property is the real indication of success or failure
 - The `token` body property, when present, is an updated token to be used for future requests
 - The `data` body property is the output of the action or `null` when `ok` is `false`
-- The `messages` body property is an array of strings (success messages or error messages depending on `ok` value)
+- The `message` body property is a string (success message or error message depending on `ok` value)
 
 ### Example Response (Success)
 
@@ -62,9 +62,7 @@ The following rules apply to responses:
   "ok": true,
   "token": "A1B2C3.D4E5F6",
   "data": {},
-  "messages": [
-    "Blog post deleted successfully."
-  ]
+  "message": "Blog post deleted successfully."
 }
 ```
 
@@ -75,9 +73,7 @@ The following rules apply to responses:
   "ok": false,
   "token": "A1B2C3.D4E5F6",
   "data": null,
-  "messages": [
-    "You do not have permission to delete blog posts."
-  ]
+  "messages": "You do not have permission to delete blog posts."
 }
 ```
 

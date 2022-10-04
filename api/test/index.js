@@ -43,7 +43,7 @@ describe('index.js', () => {
         await subject(now, env, db, method, requestBody).catch();
 
         expect(responsesErrorStub.called).to.eq(true);
-        expect(responsesErrorStub.getCall(0).calledWithExactly([errors.default])).to.eq(true);
+        expect(responsesErrorStub.getCall(0).args).to.eql([]);
       });
     });
 
@@ -62,7 +62,7 @@ describe('index.js', () => {
         await subject(now, env, db, method, requestBody).catch();
 
         expect(responsesErrorStub.called).to.eq(true);
-        expect(responsesErrorStub.getCall(0).calledWithExactly([errors.default, errorMessage])).to.eq(true);
+        expect(responsesErrorStub.getCall(0).calledWithExactly(errorMessage)).to.eq(true);
       });
     });
   });
@@ -108,7 +108,7 @@ describe('index.js', () => {
 
       await subject(now, env, db, method, requestBody);
 
-      expect(responsesErrorStub.getCall(0).calledWithExactly([errors.routing.nonPostRequest])).to.eq(true);
+      expect(responsesErrorStub.getCall(0).calledWithExactly(errors.routing.nonPostRequest)).to.eq(true);
       expect(routeStub.called).to.eq(false);
     });
   });
