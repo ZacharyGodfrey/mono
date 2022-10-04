@@ -21,7 +21,7 @@ module.exports = async (now, processEnv, db, httpMethod, requestBody) => {
     console.error(e);
 
     const isProduction = context && context.env && context.env.isProduction;
-    const messages = isProduction ? [errors.default, e.message] : [errors.default];
+    const messages = !isProduction ? [errors.default, e.message] : [errors.default];
 
     return error(messages);
   }
