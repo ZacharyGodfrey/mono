@@ -5,7 +5,7 @@ const proxyquire = require('proxyquire');
 describe('actions/debug.js', () => {
   const successStub = stub();
 
-  const action = proxyquire('', {
+  const action = proxyquire('../../src/acions/debug', {
     '../methods/responses': {
       success: successStub
     }
