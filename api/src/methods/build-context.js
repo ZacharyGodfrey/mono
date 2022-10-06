@@ -1,4 +1,4 @@
-module.exports = (now, processEnv, db) => {
+exports = (now, processEnv, db) => {
   const env = {
     isProduction: processEnv.NODE_ENV === 'production',
     token: {

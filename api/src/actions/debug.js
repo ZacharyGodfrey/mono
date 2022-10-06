@@ -1,6 +1,6 @@
 const { success } = require('../methods/responses');
 
-module.exports = {
+exports = {
   authenticate: true,
   execute: async (context, user, input) => {
     const { now, env, db } = context;

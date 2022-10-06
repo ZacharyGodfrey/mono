@@ -1,4 +1,4 @@
-module.exports = {
+exports = {
   errors: {
     default: 'An error occurred.',
     routing: {

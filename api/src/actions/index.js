@@ -1,3 +1,3 @@
-module.exports = {
+exports = {
   'debug': require('./debug')
 };

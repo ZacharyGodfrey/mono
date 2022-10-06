@@ -25,7 +25,7 @@ jobs:
       - name: Commit JSON Coverage Report
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          file_pattern: api/coverage/coverage-summary.json
+          file_pattern: _coverage/coverage-summary.json
           commit_message: Update JSON coverage report
           commit_user_name: CI Workflow
           commit_user_email: ci-workflow-actions@github.com

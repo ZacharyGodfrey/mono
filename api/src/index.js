@@ -4,7 +4,7 @@ const route = require('./methods/route');
 const actions = require('./actions');
 const buildContext = require('./methods/build-context');
 
-module.exports = async (now, processEnv, db, httpMethod, requestBody) => {
+exports = async (now, processEnv, db, httpMethod, requestBody) => {
   let context = null;
 
   try {

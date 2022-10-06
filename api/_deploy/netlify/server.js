@@ -3,7 +3,7 @@ const api = require('../../src/index');
 
 // Documentation:
 // https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html#apigateway-example-event
-module.exports = async (event) => {
+exports = async (event) => {
   const now = Date.now();
   const { status, body } = await api(now, process.env, db, event.httpMethod, event.body);
 

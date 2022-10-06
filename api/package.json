@@ -29,6 +29,7 @@
     "include": [
       "src/**/*.js"
     ],
+    "report-dir": "./_coverage",
     "reporter": [
       "html",
       "json-summary",

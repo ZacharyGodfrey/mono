@@ -1,7 +1,7 @@
 const { notFound, error } = require('./responses');
 const getUserFromToken = require('./auth/get-user-from-token');
 
-module.exports = async (context, actions, body) => {
+exports = async (context, actions, body) => {
   const { now, env, db } = context;
   const { action: actionName, token, data } = body;
   const action = actions[actionName];
