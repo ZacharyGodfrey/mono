@@ -16,16 +16,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16
-      - name: Open API
-        run: cd api
-      - name: Install Dependencies
-        run: ls && npm install
-      - name: Run Tests
-        run: npm run test
+      - name: Open API, Install Dependencies, and Run Tests
+        run: cd api && npm install && npm run test
       - name: Commit JSON Coverage Report
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          file_pattern: _coverage/coverage-summary.json
+          file_pattern: api/_coverage/coverage-summary.json
           commit_message: Update JSON coverage report
           commit_user_name: CI Workflow
           commit_user_email: ci-workflow-actions@github.com
