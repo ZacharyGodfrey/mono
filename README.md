@@ -4,7 +4,6 @@
 
 ![version][shield-version]
 ![commit][shield-commit]
-![language][shield-lang]
 
 ![build][shield-build]
 ![coverage][shield-coverage]
@@ -97,6 +96,5 @@ Database information is **TBD** at the moment.
 
 [shield-version]: https://img.shields.io/github/package-json/v/ZacharyGodfrey/mono?style=flat-square
 [shield-commit]: https://img.shields.io/github/last-commit/ZacharyGodfrey/mono/main?style=flat-square
-[shield-lang]: https://img.shields.io/github/languages/top/ZacharyGodfrey/mono?style=flat-square
 [shield-build]: https://img.shields.io/github/workflow/status/ZacharyGodfrey/mono/CI%20Workflow/main?style=flat-square
 [shield-coverage]: https://img.shields.io/badge/dynamic/json?style=flat-square&color=blue&label=coverage&query=$.total.statements.pct&suffix=%&url=https://raw.githubusercontent.com/ZacharyGodfrey/mono/main/api/_coverage/coverage-summary.json
