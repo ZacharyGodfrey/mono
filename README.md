@@ -22,13 +22,13 @@ Any code change pushed to the `main` branch of the repo will trigger a new build
     - [Mocha](https://www.npmjs.com/package/mocha) for running unit tests
     - [NYC](https://www.npmjs.com/package/nyc) for generating test coverage reports
     - [Chai](https://www.npmjs.com/package/chai), [Sinon](https://www.npmjs.com/package/sinon), and [Proxyquire](https://www.npmjs.com/package/proxyquire) for testing functionality
-- API
+- [The API](#the-api)
   - [Netlify Functions](https://www.netlify.com/products/functions) for serverless hosting
-- Client
+- [The Client](#the-client)
   - [Netlify](https://www.netlify.com) for static hosting
   - Custom-built static site generator (for now, to be replaced with [Eleventy](https://www.11ty.dev))
   - **TBD** for content management
-- Database
+- [The Database](#the-database)
   - **TBD** for data storage
 
 ## The API
