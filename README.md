@@ -1,6 +1,6 @@
-# netlify-template
+# Mono
 
-**A template repo for web apps deployed to Netlify**
+**A template for mono repo development**
 
 ![version][shield-version]
 ![commit][shield-commit]
@@ -11,7 +11,7 @@
 
 ## Architecture
 
-This is a mono repo - a single repository containing all of the code for each layer of the application stack.
+This is a **mono repo** - a single repository containing all of the code for each layer of the application stack.
 
 Any code change pushed to the `main` branch of the repo will trigger a new build and deployment of both the API and client application.
 
@@ -90,12 +90,12 @@ The client is a statically generated website. It renders the pages once at build
 
 ## The Database
 
-**TBD**
+Database information is **TBD** at the moment.
 
 ---
 
-[shield-version]: https://img.shields.io/github/package-json/v/ZacharyGodfrey/netlify-template?style=flat-square
-[shield-commit]: https://img.shields.io/github/last-commit/ZacharyGodfrey/netlify-template/main?style=flat-square
-[shield-lang]: https://img.shields.io/github/languages/top/ZacharyGodfrey/netlify-template?style=flat-square
-[shield-build]: https://img.shields.io/github/workflow/status/ZacharyGodfrey/netlify-template/CI%20Workflow/main?style=flat-square
-[shield-coverage]: https://img.shields.io/badge/dynamic/json?style=flat-square&color=blue&label=coverage&query=$.total.statements.pct&suffix=%&url=https://raw.githubusercontent.com/ZacharyGodfrey/netlify-template/main/api/_coverage/coverage-summary.json
+[shield-version]: https://img.shields.io/github/package-json/v/ZacharyGodfrey/mono?style=flat-square
+[shield-commit]: https://img.shields.io/github/last-commit/ZacharyGodfrey/mono/main?style=flat-square
+[shield-lang]: https://img.shields.io/github/languages/top/ZacharyGodfrey/mono?style=flat-square
+[shield-build]: https://img.shields.io/github/workflow/status/ZacharyGodfrey/mono/CI%20Workflow/main?style=flat-square
+[shield-coverage]: https://img.shields.io/badge/dynamic/json?style=flat-square&color=blue&label=coverage&query=$.total.statements.pct&suffix=%&url=https://raw.githubusercontent.com/ZacharyGodfrey/mono/main/api/_coverage/coverage-summary.json
