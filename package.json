@@ -1,4 +1,12 @@
 {
   "name": "netlify-template",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "scripts": {
+    "test": "npm run test --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present"
+  },
+  "workspaces": [
+    "api",
+    "client"
+  ]
 }

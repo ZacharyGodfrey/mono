@@ -3,7 +3,7 @@
 
 [build]
   publish = "dist"
-  command = "npm run build"
+  command = "cd .. && npm i && npm run build && cd client"
 
 [functions]
   directory = "../api/_deploy/netlify"
