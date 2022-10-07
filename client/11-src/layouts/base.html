@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{description}}">
+    <title>{{title}}</title>
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,//favicon">
+    <style>
+      @font-face {
+        font-family: "custom-font";
+        src: url(data:application/x-font-ttf;charset=utf-8;base64,//font);
+      }
+      /* style */
+    </style>
+  </head>
+  <body>
+    {% include "header.html" %}
+
+    <main>
+      {{ content | safe }}
+      <!-- content -->
+    </main>
+
+    {% include "footer.html" %}
+
+    <script>
+      document.getElementById('current-year').innerHTML = `${new Date().getFullYear()}`;
+    </script>
+  </body>
+</html>
