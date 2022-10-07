@@ -9,7 +9,6 @@ describe('index.js', () => {
   const responsesErrorStub = stub();
   const responsesEmptyStub = stub();
   const routeStub = stub();
-  const actionsStub = stub();
 
   const subject = proxyquire('../src/index', {
     './methods/responses': {
@@ -17,7 +16,7 @@ describe('index.js', () => {
       empty: responsesEmptyStub
     },
     './methods/route': routeStub,
-    './actions': actionsStub,
+    './actions': {},
     './methods/build-context': buildContextStub
   });
 
@@ -26,7 +25,6 @@ describe('index.js', () => {
     responsesErrorStub.reset();
     responsesEmptyStub.reset();
     routeStub.reset();
-    actionsStub.reset();
   });
 
   describe('when an error occurs', () => {
