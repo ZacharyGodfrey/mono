@@ -7,6 +7,7 @@
   },
   "workspaces": [
     "api",
-    "client"
+    "client",
+    "database"
   ]
 }
