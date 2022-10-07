@@ -6,12 +6,12 @@
 ![Commit][shield-commit]
 ![Coverage][shield-coverage]
 
-![Build][shield-build]
 ![CI Workflow][shield-ci]
+![Build][shield-build]
 
 ## Architecture
 
-This is a **mono repo** - a single repository containing all of the code for each layer of the application stack.
+This is a single repository containing all of the code for each layer of the application stack.
 
 Any code change pushed to the `main` branch of the repo will trigger a new build and deployment of both the API and client application.
 
@@ -26,9 +26,9 @@ Any code change pushed to the `main` branch of the repo will trigger a new build
 - [The API](#the-api)
   - [Netlify Functions](https://www.netlify.com/products/functions) for serverless hosting
 - [The Client](#the-client)
-  - [Netlify](https://www.netlify.com) for static hosting
-  - Custom-built static site generator (for now, to be replaced with [Eleventy](https://www.11ty.dev))
-  - **TBD** for content management
+  - [Netlify](https://www.netlify.com) for static file hosting
+  - Custom-built static site generator for now, to be replaced with [Eleventy](https://www.11ty.dev)
+  - **TBD** for content management system
 - [The Database](#the-database)
   - **TBD** for data storage
 
@@ -47,10 +47,11 @@ The following rules apply to requests:
 
 ```json
 {
-  "action": "Delete Blog Post",
+  "action": "Create Blog Post",
   "token": "A1B2C3.D4E5F6",
   "data": {
-    "postId": 123
+    "title": "Sample Blog Post",
+    "body": "This is a sample blog post."
   }
 }
 ```
@@ -61,16 +62,20 @@ The following rules apply to responses:
 - The `ok` body property is the real indication of success or failure
 - The `message` body property is a string (success message or error message depending on `ok` value)
 - The `token` body property, when present, is an updated token to be used for future requests
-- The `data` body property is the output of the action or `null` when `ok` is `false`
+- The `data` body property is the output of the action (always `null` when `ok` is `false`)
 
 ### Example Response (Success)
 
 ```json
 {
   "ok": true,
-  "message": "Blog post deleted successfully.",
+  "message": "Blog post created successfully.",
   "token": "A1B2C3.D4E5F6",
-  "data": {}
+  "data": {
+    "id": "7a682d74-852a-4cd0-be34-40a488cdca98",
+    "title": "Sample Blog Post",
+    "body": "This is a sample blog post."
+  }
 }
 ```
 
@@ -79,7 +84,7 @@ The following rules apply to responses:
 ```json
 {
   "ok": false,
-  "message": "You do not have permission to delete blog posts.",
+  "message": "You do not have permission to create blog posts.",
   "token": "A1B2C3.D4E5F6",
   "data": null
 }
@@ -99,5 +104,5 @@ Database information is **TBD** at the moment.
 [shield-commit]: https://img.shields.io/github/last-commit/ZacharyGodfrey/mono/main?style=flat-square
 [shield-coverage]: https://img.shields.io/badge/dynamic/json?style=flat-square&color=blue&label=coverage&query=$.total.statements.pct&suffix=%&url=https://raw.githubusercontent.com/ZacharyGodfrey/mono/main/api/_coverage/coverage-summary.json
 
-[shield-build]: https://api.netlify.com/api/v1/badges/bff64e91-c255-4ca6-93e2-ead733e79abd/deploy-status
 [shield-ci]: https://github.com/ZacharyGodfrey/mono/actions/workflows/ci-workflow.yml/badge.svg
+[shield-build]: https://api.netlify.com/api/v1/badges/bff64e91-c255-4ca6-93e2-ead733e79abd/deploy-status
