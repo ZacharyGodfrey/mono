@@ -2,11 +2,12 @@
 
 **A template for mono repo development**
 
-![version][shield-version]
-![commit][shield-commit]
+![Version][shield-version]
+![Commit][shield-commit]
+![Coverage][shield-coverage]
 
-![build][shield-build]
-![coverage][shield-coverage]
+![Build][shield-build]
+![CI Workflow][shield-ci]
 
 ## Architecture
 
@@ -96,5 +97,7 @@ Database information is **TBD** at the moment.
 
 [shield-version]: https://img.shields.io/github/package-json/v/ZacharyGodfrey/mono?style=flat-square
 [shield-commit]: https://img.shields.io/github/last-commit/ZacharyGodfrey/mono/main?style=flat-square
-[shield-build]: https://img.shields.io/github/workflow/status/ZacharyGodfrey/mono/CI%20Workflow/main?style=flat-square
 [shield-coverage]: https://img.shields.io/badge/dynamic/json?style=flat-square&color=blue&label=coverage&query=$.total.statements.pct&suffix=%&url=https://raw.githubusercontent.com/ZacharyGodfrey/mono/main/api/_coverage/coverage-summary.json
+
+[shield-build]: https://api.netlify.com/api/v1/badges/bff64e91-c255-4ca6-93e2-ead733e79abd/deploy-status
+[shield-ci]: https://github.com/ZacharyGodfrey/mono/actions/workflows/ci-workflow.yml/badge.svg
