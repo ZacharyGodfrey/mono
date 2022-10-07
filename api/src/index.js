@@ -4,7 +4,7 @@ const route = require('./methods/route');
 const actions = require('./actions');
 const buildContext = require('./methods/build-context');
 
-exports = async (now, processEnv, db, httpMethod, requestBody) => {
+module.exports = async (now, processEnv, db, httpMethod, requestBody) => {
   let context = null;
 
   try {
@@ -20,8 +20,8 @@ exports = async (now, processEnv, db, httpMethod, requestBody) => {
   } catch (e) {
     console.error(e);
 
-    const isProduction = context && context.env && context.env.isProduction;
+    const isDevelopment = !context || !context.env.isProduction;
 
-    return isProduction ? error() : error(e.message);
+    return isDevelopment ? error(e.message) : error();
   }
 };

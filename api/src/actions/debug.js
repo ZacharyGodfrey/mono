@@ -1,6 +1,6 @@
 const { success } = require('../methods/responses');
 
-exports = {
+module.exports = {
   authenticate: true,
   execute: async ({ now, env, db }, user, input) => {
     const message = 'Debug info returned successfully.';

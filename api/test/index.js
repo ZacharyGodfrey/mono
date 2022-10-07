@@ -33,14 +33,18 @@ describe('index.js', () => {
     describe('when on Production', () => {
       it('should call the error response with the default message', async () => {
         const now = Date.now();
-        const env = { NODE_ENV: 'production' };
+        const env = {};
         const db = {};
-        const method = 'POST';
+        const method = undefined;
         const requestBody = {};
-        const errorMessage = 'Test error message.';
 
-        buildContextStub.throws(new Error(errorMessage));
-        await subject(now, env, db, method, requestBody).catch();
+        buildContextStub.returns({
+          now,
+          env: { isProduction: true },
+          db
+        });
+
+        await subject(now, env, db, method, requestBody);
 
         expect(responsesErrorStub.called).to.eq(true);
         expect(responsesErrorStub.getCall(0).args).to.eql([]);
@@ -49,20 +53,22 @@ describe('index.js', () => {
 
     describe('when not on Production', () => {
       it('should call the error response with the default message and the thrown error message', async () => {
-        buildContextStub.throws(new Error('Test error message.'));
-
         const now = Date.now();
-        const env = { NODE_ENV: 'development' };
+        const env = {};
         const db = {};
-        const method = 'POST';
+        const method = undefined;
         const requestBody = {};
-        const errorMessage = 'Test error message.';
 
-        buildContextStub.throws(new Error(errorMessage));
-        await subject(now, env, db, method, requestBody).catch();
+        buildContextStub.returns({
+          now,
+          env: { isProduction: false },
+          db
+        });
+
+        await subject(now, env, db, method, requestBody);
 
         expect(responsesErrorStub.called).to.eq(true);
-        expect(responsesErrorStub.getCall(0).calledWithExactly(errorMessage)).to.eq(true);
+        expect(responsesErrorStub.getCall(0).args).to.eql(["Cannot read property 'toUpperCase' of undefined"]);
       });
     });
   });

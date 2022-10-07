@@ -1,7 +1,7 @@
 const connection = {};
 
 // Export an initialized object to ensure single database connection
-exports = {
+module.exports = {
   getUser: async (userId) => {
     return {
       id: userId,

@@ -20,7 +20,7 @@ const isExpired = (createdAt, now, windowMinutes) => {
   return createdAt < expirationTime;
 };
 
-exports = async (context, token) => {
+module.exports = async (context, token) => {
   const { now, env, db } = context;
   const { secret, window } = env.token;
 
