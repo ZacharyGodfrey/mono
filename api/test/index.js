@@ -68,7 +68,7 @@ describe('index.js', () => {
         await subject(now, env, db, method, requestBody);
 
         expect(responsesErrorStub.called).to.eq(true);
-        expect(responsesErrorStub.getCall(0).args).to.eql(["Cannot read property 'toUpperCase' of undefined"]);
+        expect(responsesErrorStub.getCall(0).args).to.eql(["Cannot read properties of undefined (reading 'toUpperCase')"]);
       });
     });
   });
