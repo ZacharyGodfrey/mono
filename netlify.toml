@@ -2,11 +2,11 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration
 
 [build]
-  publish = "dist"
   command = "npm run build"
+  publish = "client/dist"
 
 [functions]
-  directory = "../api/_deploy/netlify"
+  directory = "api/_deploy/netlify"
 
 [[redirects]]
   from = "/api/*"

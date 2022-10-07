@@ -6,10 +6,10 @@
     "build": "node index.js",
     "local": "netlify dev"
   },
-  "devDependencies": {
+  "dependencies": {
     "fs-extra": "^10.1.0",
     "glob": "^8.0.3",
-    "netlify-cli": "^11.7.1",
+    "netlify-cli": "^12.0.7",
     "node-sass": "^7.0.3"
   }
 }

@@ -1,11 +1,7 @@
-// Dependencies
-
 const path = require('path');
 const fs = require('fs-extra');
 const scss = require('node-sass');
 const glob = require('glob');
-
-// Helper Functions
 
 const resolve = (filePath) => {
   return path.resolve(path.join(__dirname, filePath));
