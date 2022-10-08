@@ -3,18 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "npm run buildCSS && npm run buildHTML",
-    "buildFont": "node build.js",
+    "build": "npm run buildCSS && node build.js",
     "buildCSS": "npx tailwindcss -i src/style.css -o src/content/includes/_temp/min.css --minify",
-    "buildHTML": "npx @11ty/eleventy",
     "local": "netlify dev"
   },
   "dependencies": {
     "@11ty/eleventy": "^1.0.2",
     "fs-extra": "^10.1.0",
-    "glob": "^8.0.3",
     "netlify-cli": "^12.0.7",
-    "node-sass": "^7.0.3",
     "tailwindcss": "^3.1.8"
   }
 }

@@ -5,43 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{description}}">
     <title>{{title}}</title>
-    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,//favicon">
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,{% include '_temp/font.base64' %}">
     <style>
       @font-face {
         font-family: "custom-font";
-        src: url(data:application/x-font-ttf;charset=utf-8;base64,{% include "_temp/font.base64" %});
+        src: url(data:application/x-font-ttf;charset=utf-8;base64,{% include '_temp/font.base64' %});
       }
-      {% include "_temp/min.css" %}
+      {% include '_temp/min.css' %}
     </style>
   </head>
   <body>
-    <header class="section-primary">
-      <div class="content text-center">
-        <h1 class="font-custom">
-          <a href="/">Mono</a>
-        </h1>
-
-        <p>
-          <a href="/#about">About</a>
-          <span>&bull;</span>
-          <a href="/#contact">Contact</a>
-        </p>
-      </div>
-    </header>
+    {% include 'header.html' %}
 
     <main>
       {{ content | safe }}
     </main>
 
-    <footer class="section-primary">
-      <div class="content text-center">
-        <p>
-          <span>&copy;</span>
-          <span id="current-year">2022</span>
-          <span>Zachary Godfrey</span>
-        </p>
-      </div>
-    </footer>
+    {% include 'footer.html' %}
 
     <script>
       document.getElementById('current-year').innerHTML = `${new Date().getFullYear()}`;
