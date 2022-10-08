@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run buildCSS && npm run buildHTML",
-    "buildCSS": "npx tailwindcss -o _temp/minified.css --minify",
+    "buildFont": "node build.js",
+    "buildCSS": "npx tailwindcss -i src/style.css -o src/content/includes/_temp/min.css --minify",
     "buildHTML": "npx @11ty/eleventy",
     "local": "netlify dev"
   },

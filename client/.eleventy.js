@@ -3,14 +3,14 @@
 // #2: https://www.youtube.com/watch?v=WTVv5IbPN1k
 // #3: https://www.youtube.com/watch?v=ty0_xOxeRCU
 module.exports = (eleventyConfig) => {
-  eleventyConfig.addPassthroughCopy('11-src/assets');
+  eleventyConfig.addPassthroughCopy('src/static');
 
   return {
     dir: {
-      input: '11-src/content',
+      input: 'src/content',
       layouts: 'layouts',
       includes: 'includes',
-      output: '11-dist'
+      output: 'dist'
     },
     htmlTemplateEngine: 'njk',
     markdownTemplateEngine: 'njk'

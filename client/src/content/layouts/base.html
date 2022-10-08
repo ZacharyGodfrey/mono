@@ -9,19 +9,39 @@
     <style>
       @font-face {
         font-family: "custom-font";
-        src: url(data:application/x-font-ttf;charset=utf-8;base64,//font);
+        src: url(data:application/x-font-ttf;charset=utf-8;base64,{% include "_temp/font.base64" %});
       }
-      {% include "style.css" %}
+      {% include "_temp/min.css" %}
     </style>
   </head>
   <body>
-    {% include "header.html" %}
+    <header class="section-primary">
+      <div class="content text-center">
+        <h1 class="font-custom">
+          <a href="/">Mono</a>
+        </h1>
+
+        <p>
+          <a href="/#about">About</a>
+          <span>&bull;</span>
+          <a href="/#contact">Contact</a>
+        </p>
+      </div>
+    </header>
 
     <main>
       {{ content | safe }}
     </main>
 
-    {% include "footer.html" %}
+    <footer class="section-primary">
+      <div class="content text-center">
+        <p>
+          <span>&copy;</span>
+          <span id="current-year">2022</span>
+          <span>Zachary Godfrey</span>
+        </p>
+      </div>
+    </footer>
 
     <script>
       document.getElementById('current-year').innerHTML = `${new Date().getFullYear()}`;
