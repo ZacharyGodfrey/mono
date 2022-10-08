@@ -11,7 +11,7 @@
         font-family: "custom-font";
         src: url(data:application/x-font-ttf;charset=utf-8;base64,//font);
       }
-      /* style */
+      {% include "style.css" %}
     </style>
   </head>
   <body>
@@ -19,7 +19,6 @@
 
     <main>
       {{ content | safe }}
-      <!-- content -->
     </main>
 
     {% include "footer.html" %}

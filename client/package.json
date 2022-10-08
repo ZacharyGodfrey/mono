@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "node index.js",
+    "build": "npm run buildCSS && npm run buildHTML",
+    "buildCSS": "npx tailwindcss -o _temp/minified.css --minify",
+    "buildHTML": "npx @11ty/eleventy",
     "local": "netlify dev"
   },
   "dependencies": {
+    "@11ty/eleventy": "^1.0.2",
     "fs-extra": "^10.1.0",
     "glob": "^8.0.3",
     "netlify-cli": "^12.0.7",
-    "node-sass": "^7.0.3"
+    "node-sass": "^7.0.3",
+    "tailwindcss": "^3.1.8"
   }
 }
