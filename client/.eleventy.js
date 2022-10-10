@@ -9,14 +9,14 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy('src/static');
 
   eleventyConfig.addFilter('asBase64', (fileName) => {
-    const filePath = path.resolve(__dirname, `./src/content/_includes/${fileName}`);
+    const filePath = path.resolve(__dirname, `./src/_includes/${fileName}`);
 
     return fs.readFileSync(filePath, { encoding: 'base64' });
   });
 
   return {
     dir: {
-      input: 'src/content',
+      input: 'src',
       output: 'dist'
     },
     htmlTemplateEngine: 'njk',
