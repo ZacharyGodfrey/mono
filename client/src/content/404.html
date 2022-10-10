@@ -1,4 +1,5 @@
 ---
+permalink: 404.html
 layout: "layout.html"
 title: "404 Not Found"
 description: "The requested page does not exist."
@@ -9,3 +10,9 @@ description: "The requested page does not exist."
 
   <p>{{description}}</p>
 </article>
+
+{% block pageScript %}
+<script>
+  // Page-specific code here!
+</script>
+{% endblock %}
