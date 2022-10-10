@@ -13,18 +13,37 @@
       }
       {% include '_temp.css' %}
     </style>
+    <script src="//unpkg.com/alpinejs" defer></script>
   </head>
   <body>
-    {% include 'header.html' %}
+    <header class="section-primary">
+      <div class="content text-center">
+        <h1 class="font-custom">
+          <a href="/">Mono</a>
+        </h1>
+
+        <p>
+          <a href="/#about">About</a>
+          <span>&bull;</span>
+          <a href="/#contact">Contact</a>
+        </p>
+      </div>
+    </header>
 
     <main>
       {{ content | safe }}
     </main>
 
-    {% include 'footer.html' %}
+    <footer class="section-primary">
+      <div class="content text-center">
+        <p>
+          <span>&copy;</span>
+          <span x-text="new Date().getFullYear()">2022</span>
+          <span>Zachary Godfrey</span>
+        </p>
+      </div>
+    </footer>
 
-    <script>
-      document.getElementById('current-year').innerHTML = `${new Date().getFullYear()}`;
-    </script>
+    {% block pageScript %}{% endblock %}
   </body>
 </html>

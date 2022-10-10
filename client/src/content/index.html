@@ -7,5 +7,11 @@ description: "The home page of the website."
 <article>
   <h2>{{title}}</h2>
 
-  <p>This is the home page.</p>
+  <p>{{description}}</p>
 </article>
+
+{% block pageScript %}
+<script>
+  document.getElementById('current-year').innerHTML = `${new Date().getFullYear()}`;
+</script>
+{% endblock %}

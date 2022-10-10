@@ -17,7 +17,6 @@ module.exports = (eleventyConfig) => {
   return {
     dir: {
       input: 'src/content',
-      includes: '_includes',
       output: 'dist'
     },
     htmlTemplateEngine: 'njk',
