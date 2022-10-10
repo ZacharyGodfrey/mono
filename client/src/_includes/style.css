@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  position: relative;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-size: 16px;
+  font-family: monospace;
+  color: #222222;
+  background: #EEEEEE;
+}
+
+h1 {
+  font-family: "custom-font", sans-serif;
+}

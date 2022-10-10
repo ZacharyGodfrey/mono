@@ -1,5 +1,6 @@
-node_modules
-.nyc_output
-.netlify
-dist
-.env
+node_modules/
+.nyc_output/
+.netlify/
+dist/
+*.env
+_temp.css
