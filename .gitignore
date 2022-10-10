@@ -2,5 +2,5 @@ node_modules/
 .nyc_output/
 .netlify/
 dist/
-_temp/
 *.env
+_temp.css

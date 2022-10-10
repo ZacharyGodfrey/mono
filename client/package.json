@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "npm run buildCSS && node build.js",
-    "buildCSS": "npx tailwindcss -i src/style.css -o src/content/includes/_temp/min.css --minify",
+    "build": "npm run buildCSS && npm run buildHTML",
+    "buildCSS": "npx tailwindcss -i src/content/_includes/style.css -o src/content/_includes/_temp.css --minify",
+    "buildHTML": "npx @11ty/eleventy",
     "local": "netlify dev"
   },
   "dependencies": {

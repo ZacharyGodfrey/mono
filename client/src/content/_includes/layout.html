@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{description}}">
     <title>{{title}}</title>
-    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,{% include '_temp/font.base64' %}">
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,{{ 'favicon.png' | asBase64 }}">
     <style>
       @font-face {
         font-family: "custom-font";
-        src: url(data:application/x-font-ttf;charset=utf-8;base64,{% include '_temp/font.base64' %});
+        src: url(data:application/x-font-ttf;charset=utf-8;base64,{{ 'satisfy.ttf' | asBase64 }});
       }
-      {% include '_temp/min.css' %}
+      {% include '_temp.css' %}
     </style>
   </head>
   <body>
