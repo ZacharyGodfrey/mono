@@ -1,6 +1,4 @@
 const { expect } = require('chai');
-const { stub } = require('sinon');
-const proxyquire = require('proxyquire');
 
 const createToken = require('../../../src/methods/auth/create-token');
 
