@@ -1,4 +1,10 @@
 module.exports = {
+  defaults: {
+    token: {
+      secret: 'default token secret',
+      window: 15
+    }
+  },
   errors: {
     default: 'An error occurred.',
     routing: {

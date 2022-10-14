@@ -1,6 +1,7 @@
 const { expect } = require('chai');
 
 const buildContext = require('../../../src/methods/build-context');
+const { defaults } = require('../../../src/constants');
 
 describe('methods/build-context.js', () => {
   describe('when called', () => {
@@ -52,7 +53,7 @@ describe('methods/build-context.js', () => {
       const db = {};
       const result = buildContext(now, processEnv, db);
 
-      expect(result.env.token.secret).to.eq('default secret value');
+      expect(result.env.token.secret).to.eq(defaults.token.secret);
     });
   });
 
@@ -76,7 +77,7 @@ describe('methods/build-context.js', () => {
       const db = {};
       const result = buildContext(now, processEnv, db);
 
-      expect(result.env.token.window).to.eq(15 * 60 * 1000);
+      expect(result.env.token.window).to.eq(defaults.token.window * 60 * 1000);
     });
   });
 
