@@ -9,7 +9,7 @@ const isValid = (token, secret) => {
 
 const parseToken = (token) => {
   const [encodedBody] = token.split('.');
-  const body = decode.hex(encodedBody);
+  const body = decode(encodedBody, 'hex');
 
   return JSON.parse(body);
 };
