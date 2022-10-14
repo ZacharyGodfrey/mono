@@ -1,36 +1,33 @@
 const { expect } = require('chai');
-const { stub } = require('sinon');
-const proxyquire = require('proxyquire');
+
+const debug = require('../../src/actions/debug');
 
 describe('actions/debug.js', () => {
-  const successStub = stub();
-
-  const action = proxyquire('../../src/actions/debug', {
-    '../methods/responses': {
-      success: successStub
-    }
-  });
-
-  beforeEach(() => {
-    successStub.reset();
-  });
-
   describe('when initialized', () => {
     it('should have the correct properties', () => {
-      expect(action.authenticate).to.eq(true);
-      expect(typeof action.execute).to.eq('function');
+      expect(debug.authenticate).to.eq(true);
+      expect(typeof debug.execute).to.eq('function');
     });
   });
 
   describe('when executed', () => {
-    it('should call success response method', async () => {
-      await action.execute({
+    it('should return the correct values', async () => {
+      const context = {
         now: Date.now(),
         env: {},
         db: {}
-      }, {}, {});
+      };
+      const user = { id: 'abc-123'};
+      const input = { abc: 123 };
+      const result = await debug.execute(context, user, input);
 
-      expect(successStub.called).to.eq(true);
+      expect(typeof result.data).to.eq('object');
+      expect(typeof result.message).to.eq('string');
+      expect(result.data.now).to.eq(context.now);
+      expect(result.data.env).to.eq(context.env);
+      expect(result.data.db).to.eq(context.db);
+      expect(result.data.user).to.eq(user);
+      expect(result.data.input).to.eq(input);
     });
   });
 });

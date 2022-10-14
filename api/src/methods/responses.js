@@ -17,11 +17,11 @@ exports.notFound = (token) => ({
   })
 });
 
-exports.success = (data, message, token) => ({
+exports.success = (data, token) => ({
   status: 200,
   body: toJson({
     ok: true,
-    message: message || '',
+    message: '',
     token,
     data: data === undefined ? null : data
   })
@@ -31,7 +31,7 @@ exports.error = (message, token) => ({
   status: 200,
   body: toJson({
     ok: false,
-    message: message || errors.default,
+    message,
     token,
     data: null
   })

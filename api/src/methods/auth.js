@@ -1,5 +1,6 @@
-const { hmac, decode } = require('../helpers');
+const { hmac, encode, decode } = require('../helpers');
 const { errors: { auth: authErrors } } = require('../../constants');
+const AppError = require('../../app-error');
 
 const isValid = (token, secret) => {
   const [encodedBody, hash] = token.split('.');
@@ -20,25 +21,33 @@ const isExpired = (createdAt, now, windowMilliseconds) => {
   return createdAt < expirationTime;
 };
 
-module.exports = async (context, token) => {
+module.exports.createToken = (id, now, secret) => {
+  const body = JSON.stringify({ id, createdAt: now });
+  const encodedBody = encode(body, 'hex');
+  const hash = hmac(secret, encodedBody, 'hex');
+
+  return `${encodedBody}.${hash}`;
+};
+
+module.exports.getUserFromToken = async (context, token) => {
   const { now, env, db } = context;
   const { secret, window } = env.token;
 
   if (!isValid(token, secret)) {
-    return { user: null, error: authErrors.invalidToken };
+    throw new AppError(authErrors.invalidToken);
   }
 
   const { id, createdAt } = parseToken(token);
 
   if (isExpired(createdAt, now, window)) {
-    return { user: null, error: authErrors.expiredToken };
+    throw new AppError(authErrors.expiredToken);
   }
 
   const user = await db.getUser(id);
 
   if (!user) {
-    return { user: null, error: authErrors.userNotFound };
+    throw new AppError(authErrors.userNotFound);
   }
 
-  return { user, error: null };
+  return user;
 };

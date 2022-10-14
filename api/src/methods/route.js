@@ -1,20 +1,17 @@
-const { notFound, error } = require('./responses');
+const responses = require('./responses');
 const getUserFromToken = require('./auth/get-user-from-token');
 
 module.exports.handler = async (context, actions, body) => {
-  const { now, env, db } = context;
   const { action: actionName, token, data } = body;
   const action = actions[actionName];
 
   if (!action) {
-    return notFound();
+    return responses.notFound();
   }
 
-  if (!action.authenticate) {
-    return await action.execute(context, null, data);
-  }
+  const { authenticate, execute } = action;
+  const user = !authenticate ? null : await getUserFromToken(context, token);
+  const result = await execute(context, user, data);
 
-  const { user, error: e } = await getUserFromToken(context, token);
-
-  return e ? error(e) : await action.execute(context, user, data);
+  return responses.success(result, token);
 };

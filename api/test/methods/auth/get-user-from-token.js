@@ -3,7 +3,7 @@ const { stub } = require('sinon');
 
 const { errors: { auth: authErrors } } = require('../../../src/constants');
 const createToken = require('../../../src/methods/auth/create-token');
-const getUserFromToken = require('../../../src/methods/auth/get-user-from-token');
+const { getUserFromToken } = require('../../../src/methods/auth');
 
 describe('methods/auth/create-token.js', () => {
   const dbGetUserStub = stub();
