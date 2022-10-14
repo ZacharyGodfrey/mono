@@ -17,9 +17,14 @@ exports.notFound = (token) => ({
   })
 });
 
-exports.success = () => ({
+exports.success = (data, message, token) => ({
   status: 200,
-  body: ''
+  body: toJson({
+    ok: true,
+    message: message || '',
+    token,
+    data: data === undefined ? null : data
+  })
 });
 
 exports.error = (message, token) => ({
