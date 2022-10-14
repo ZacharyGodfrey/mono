@@ -14,8 +14,8 @@ const parseToken = (token) => {
   return JSON.parse(body);
 };
 
-const isExpired = (createdAt, now, windowMinutes) => {
-  const expirationTime = now - (windowMinutes * 60 * 1000);
+const isExpired = (createdAt, now, windowMilliseconds) => {
+  const expirationTime = now - windowMilliseconds;
 
   return createdAt < expirationTime;
 };
