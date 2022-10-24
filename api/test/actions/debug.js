@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const debug = require('../../src/actions/debug');
+const { debug } = require('../../src/actions');
 
 describe('actions/debug.js', () => {
   describe('when initialized', () => {

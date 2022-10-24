@@ -23,7 +23,17 @@ describe('methods/route.js', () => {
   });
 
   describe('when the action does exist', () => {
+    describe('when the action does not require authentication', () => {
+      it('should execute the action with a null user', () => {
+        throw new Error('Not implemented yet.');
+      });
+    });
+
     describe('when the action requires authentication', () => {
+      it('should get the user from the provided token', () => {
+        throw new Error('Not implemented yet.');
+      });
+
       describe('when authentication fails', () => {
         it('should...', async () => {
           const context = {
@@ -71,6 +81,12 @@ describe('methods/route.js', () => {
           throw new Error('Not implemented yet.');
         });
       });
+    });
+
+    describe('when an error occurs', () => {
+      it('should not call the success response method', async () => {
+        throw new Error('Not implemented yet.');
+      })
     });
   });
 });
