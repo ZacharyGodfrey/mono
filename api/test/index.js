@@ -58,7 +58,7 @@ describe('index.js', () => {
           await subject(now, processEnv, db, method, requestBody);
 
           expect(responsesErrorStub.called).to.eq(true);
-          expect(responsesErrorStub.getCall(0).calledWithExactly(error.default)).to.eq(true);
+          expect(responsesErrorStub.getCall(0).calledWithExactly(errors.default)).to.eq(true);
         });
       });
     });
