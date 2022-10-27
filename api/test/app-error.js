@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const AppError = require('../../../src/app-error');
+const AppError = require('../src/app-error');
 
 describe('app-error.js', () => {
   describe('when initialized', () => {
