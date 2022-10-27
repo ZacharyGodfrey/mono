@@ -13,7 +13,9 @@ describe('methods/route.js', () => {
       success: successStub,
       notFound: notFoundStub
     },
-    './auth/get-user-from-token': getUserFromTokenStub
+    './auth': {
+      getUserFromToken: getUserFromTokenStub
+    }
   });
 
   const requestBody = {

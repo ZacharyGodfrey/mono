@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const { uuid, hmac, encode, decode } = require('../../../src/methods/helpers');
+const { uuid, hmac, encode, decode } = require('../../src/methods/helpers');
 
 describe('methods/helpers.js', () => {
   describe('uuid', () => {

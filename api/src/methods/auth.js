@@ -1,6 +1,6 @@
-const { hmac, encode, decode } = require('../helpers');
-const { errors: { auth: authErrors } } = require('../../constants');
-const AppError = require('../../app-error');
+const { hmac, encode, decode } = require('./helpers');
+const { errors: { auth: authErrors } } = require('../constants');
+const AppError = require('../app-error');
 
 const isValid = (token, secret) => {
   const [encodedBody, hash] = token.split('.');
