@@ -44,7 +44,7 @@ describe('methods/route.js', () => {
 
   describe('when the action does exist', () => {
     describe('when the action does not require authentication', () => {
-      it('should execute the action with a null user', () => {
+      it('should execute the action with a null user', async () => {
         const user = {};
         const context = {};
         const actions = {
@@ -65,7 +65,7 @@ describe('methods/route.js', () => {
     });
 
     describe('when the action requires authentication', () => {
-      it('should get the user from the provided token', () => {
+      it('should get the user from the provided token', async () => {
         const user = {};
         const context = {};
         const actions = {
