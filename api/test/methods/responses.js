@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 
-const { empty, notFound, success, error } = require('../../../src/methods/responses');
-const { errors: errorMessages } = require('../../../src/constants');
+const { empty, notFound, success, error } = require('../../src/methods/responses');
+const { errors: errorMessages } = require('../../src/constants');
 
 describe('methods/responses.js', () => {
   describe('empty', () => {

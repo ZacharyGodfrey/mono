@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 
-const buildContext = require('../../../src/methods/build-context');
-const { defaults } = require('../../../src/constants');
+const buildContext = require('../../src/methods/build-context');
+const { defaults } = require('../../src/constants');
 
 describe('methods/build-context.js', () => {
   describe('when called', () => {

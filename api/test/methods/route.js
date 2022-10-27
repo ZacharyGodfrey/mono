@@ -8,7 +8,7 @@ describe('methods/route.js', () => {
   const getUserFromTokenStub = stub();
   const executeStub = stub();
 
-  const route = proxyquire('../../../src/methods/route', {
+  const route = proxyquire('../../src/methods/route', {
     './responses': {
       success: successStub,
       notFound: notFoundStub
