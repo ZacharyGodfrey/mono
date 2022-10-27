@@ -2,12 +2,12 @@
 
 **A template for mono repo development**
 
-![Version][shield-version]
-![Commit][shield-commit]
-![Coverage][shield-coverage]
+![Package Version][shield-version]
+![Last Commit][shield-commit]
+![API Test Coverage][shield-coverage]
 
-![CI Workflow][shield-ci]
-![Build][shield-build]
+[![CI Workflow Status][shield-ci]][shield-ci-link]
+[![Build Status][shield-build]][shield-build-link]
 
 ## Architecture
 
@@ -26,11 +26,11 @@ Any code change pushed to the `main` branch of the repo will trigger a new build
 - [The API](#the-api)
   - [Netlify Functions](https://www.netlify.com/products/functions) for serverless hosting
 - [The Client](#the-client)
+  - [Eleventy](https://www.11ty.dev) for static site generation
   - [Netlify](https://www.netlify.com) for static file hosting
-  - Custom-built static site generator for now, to be replaced with [Eleventy](https://www.11ty.dev)
   - **TBD** for content management system
 - [The Database](#the-database)
-  - **TBD** for data storage
+  - **TBD** for data storage (likely Redis)
 
 ## The API
 
@@ -102,7 +102,9 @@ Database information is **TBD** at the moment.
 
 [shield-version]: https://img.shields.io/github/package-json/v/ZacharyGodfrey/mono?style=flat-square
 [shield-commit]: https://img.shields.io/github/last-commit/ZacharyGodfrey/mono/main?style=flat-square
-[shield-coverage]: https://img.shields.io/badge/dynamic/json?style=flat-square&color=blue&label=coverage&query=$.total.statements.pct&suffix=%&url=https://raw.githubusercontent.com/ZacharyGodfrey/mono/main/api/_coverage/coverage-summary.json
+[shield-coverage]: https://img.shields.io/badge/dynamic/json?style=flat-square&color=blue&label=API%20Test%20Coverage&query=$.total.statements.pct&suffix=%&url=https://raw.githubusercontent.com/ZacharyGodfrey/mono/main/api/_coverage/coverage-summary.json
 
 [shield-ci]: https://github.com/ZacharyGodfrey/mono/actions/workflows/ci-workflow.yml/badge.svg
+[shield-ci-link]: https://github.com/ZacharyGodfrey/mono/actions/workflows/ci-workflow.yml
 [shield-build]: https://api.netlify.com/api/v1/badges/bff64e91-c255-4ca6-93e2-ead733e79abd/deploy-status
+[shield-build-link]: https://app.netlify.com/sites/zg-mono/deploys
