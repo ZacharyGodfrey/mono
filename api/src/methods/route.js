@@ -1,5 +1,5 @@
 const responses = require('./responses');
-const getUserFromToken = require('./auth/get-user-from-token');
+const { getUserFromToken } = require('./auth');
 
 module.exports.handler = async (context, actions, body) => {
   const { action: actionName, token, data } = body;

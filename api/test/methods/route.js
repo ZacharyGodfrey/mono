@@ -1,91 +1,100 @@
 const { expect } = require('chai');
-
-const route = require('../../../src/methods/route');
+const { stub } = require('sinon');
+const proxyquire = require('proxyquire');
 
 describe('methods/route.js', () => {
+  const successStub = stub();
+  const notFoundStub = stub();
+  const getUserFromTokenStub = stub();
+  const executeStub = stub();
+
+  const route = proxyquire('../../../src/methods/route', {
+    './responses': {
+      success: successStub,
+      notFound: notFoundStub
+    },
+    './auth/get-user-from-token': getUserFromTokenStub
+  });
+
+  const requestBody = {
+    action: 'fake action',
+    token: 'abc.123',
+    data: { abc: 123 }
+  };
+
+  beforeEach(() => {
+    successStub.reset();
+    notFoundStub.reset();
+    getUserFromTokenStub.reset();
+    executeStub.reset();
+  });
+
   describe('when the action does not exist', () => {
     it('should call the notFound response method', async () => {
-      const context = {
-        now: Date.now(),
-        env: {},
-        db: {}
-      };
+      const context = {};
       const actions = {};
-      const body = {
-        action: 'fake action',
-        token: 'abc.123',
-        data: { abc: 123 }
-      };
-      const result = await route(context, actions, body);
 
-      throw new Error('Not implemented yet.');
+      const result = await route(context, actions, requestBody);
+
+      expect(notFoundStub.called).to.eq(true);
     });
   });
 
   describe('when the action does exist', () => {
     describe('when the action does not require authentication', () => {
       it('should execute the action with a null user', () => {
-        throw new Error('Not implemented yet.');
+        const user = {};
+        const context = {};
+        const actions = {
+          'fake action': {
+            authenticate: false,
+            execute: executeStub
+          }
+        };
+
+        await route(context, actions, requestBody);
+
+        expect(notFoundStub.called).to.eq(false);
+        expect(getUserFromTokenStub.called).to.eq(false);
+        expect(executeStub.called).to.eq(true);
+        expect(executeStub.getCall(0).args[1]).to.eq(null);
+        expect(successStub.called).to.eq(true);
       });
     });
 
     describe('when the action requires authentication', () => {
       it('should get the user from the provided token', () => {
-        throw new Error('Not implemented yet.');
-      });
+        const user = {};
+        const context = {};
+        const actions = {
+          'fake action': {
+            authenticate: true,
+            execute: executeStub
+          }
+        };
 
-      describe('when authentication fails', () => {
-        it('should...', async () => {
-          const context = {
-            now: Date.now(),
-            env: {},
-            db: {}
-          };
-          const actions = {
-            '': {
-              authenticate: false,
-              execute: async () => {}
-            }
-          };
-          const body = {
-            action: 'fake action',
-            token: 'abc.123',
-            data: { abc: 123 }
-          };
-          const result = await route(context, actions, body);
+        getUserFromTokenStub.resolves(user);
 
-          throw new Error('Not implemented yet.');
-        });
-      });
+        await route(context, actions, requestBody);
 
-      describe('when authentication succeeds', () => {
-        it('should...', async () => {
-          const context = {
-            now: Date.now(),
-            env: {},
-            db: {}
-          };
-          const actions = {
-            '': {
-              authenticate: false,
-              execute: async () => {}
-            }
-          };
-          const body = {
-            action: 'fake action',
-            token: 'abc.123',
-            data: { abc: 123 }
-          };
-          const result = await route(context, actions, body);
-
-          throw new Error('Not implemented yet.');
-        });
+        expect(notFoundStub.called).to.eq(false);
+        expect(getUserFromTokenStub.called).to.eq(true);
+        expect(executeStub.called).to.eq(true);
+        expect(executeStub.getCall(0).args[1]).to.eq(user);
+        expect(successStub.called).to.eq(true);
       });
     });
 
     describe('when an error occurs', () => {
       it('should not call the success response method', async () => {
-        throw new Error('Not implemented yet.');
+        const context = {};
+        const actions = {};
+
+        notFoundStub.rejects(new Error('Test error.'));
+
+        await route(context, actions, requestBody).catch();
+
+        expect(successStub.called).to.eq(false);
       })
     });
   });
