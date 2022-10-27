@@ -1,8 +1,8 @@
 const { expect } = require('chai');
 const { stub } = require('sinon');
 
-const { errors: { auth: authErrors } } = require('../../../src/constants');
-const { createToken, getUserFromToken } = require('../../../src/methods/auth');
+const { errors: { auth: authErrors } } = require('../../src/constants');
+const { createToken, getUserFromToken } = require('../../src/methods/auth');
 
 describe('methods/auth.js', () => {
   describe('create-token', () => {
