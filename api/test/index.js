@@ -3,9 +3,9 @@ const { stub } = require('sinon');
 const proxyquire = require('proxyquire');
 
 const { errors } = require('../src/constants');
+const AppError = require('../src/app-error');
 
 describe('index.js', () => {
-  const buildContextStub = stub();
   const responsesErrorStub = stub();
   const responsesEmptyStub = stub();
   const routeStub = stub();
@@ -15,13 +15,10 @@ describe('index.js', () => {
       error: responsesErrorStub,
       empty: responsesEmptyStub
     },
-    './methods/route': routeStub,
-    './actions': {},
-    './methods/build-context': buildContextStub
+    './methods/route': routeStub
   });
 
   beforeEach(() => {
-    buildContextStub.reset();
     responsesErrorStub.reset();
     responsesEmptyStub.reset();
     routeStub.reset();
@@ -29,44 +26,58 @@ describe('index.js', () => {
 
   describe('when an error occurs', () => {
     describe('when on Production', () => {
-      it('should call the error response with the default message', async () => {
-        const now = Date.now();
-        const env = {};
-        const db = {};
-        const method = undefined;
-        const requestBody = {};
+      describe('when the error is an AppError', () => {
+        it('should call the error response with the thrown error message', async () => {
+          const now = Date.now();
+          const processEnv = { NODE_ENV: 'production' };
+          const db = {};
+          const method = 'POST';
+          const requestBody = {};
+          const error = new AppError('Test message.');
 
-        buildContextStub.returns({
-          now,
-          env: { isProduction: true },
-          db
+          routeStub.throws(error);
+
+          await subject(now, processEnv, db, method, requestBody);
+
+          expect(responsesErrorStub.called).to.eq(true);
+          expect(responsesErrorStub.getCall(0).calledWithExactly(error.message)).to.eq(true);
         });
+      });
 
-        await subject(now, env, db, method, requestBody);
+      describe('when the error is not an AppError', () => {
+        it('should call the error response with the default message', async () => {
+          const now = Date.now();
+          const processEnv = { NODE_ENV: 'production' };
+          const db = {};
+          const method = 'POST';
+          const requestBody = {};
+          const error = new Error('Test message.');
 
-        expect(responsesErrorStub.called).to.eq(true);
-        expect(responsesErrorStub.getCall(0).args).to.eql([]);
+          routeStub.throws(error);
+
+          await subject(now, processEnv, db, method, requestBody);
+
+          expect(responsesErrorStub.called).to.eq(true);
+          expect(responsesErrorStub.getCall(0).calledWithExactly(error.default)).to.eq(true);
+        });
       });
     });
 
     describe('when not on Production', () => {
-      it('should call the error response with the default message and the thrown error message', async () => {
+      it('should call the error response with the thrown error message', async () => {
         const now = Date.now();
-        const env = {};
+        const processEnv = { NODE_ENV: 'development' };
         const db = {};
-        const method = undefined;
+        const method = 'POST';
         const requestBody = {};
+        const error = new Error('Test message.');
 
-        buildContextStub.returns({
-          now,
-          env: { isProduction: false },
-          db
-        });
+        routeStub.throws(error);
 
-        await subject(now, env, db, method, requestBody);
+        await subject(now, processEnv, db, method, requestBody);
 
         expect(responsesErrorStub.called).to.eq(true);
-        expect(responsesErrorStub.getCall(0).args).to.eql(["Cannot read properties of undefined (reading 'toUpperCase')"]);
+        expect(responsesErrorStub.getCall(0).calledWithExactly(error.message)).to.eq(true);
       });
     });
   });

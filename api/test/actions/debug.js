@@ -21,13 +21,12 @@ describe('actions/debug.js', () => {
       const input = { abc: 123 };
       const result = await debug.execute(context, user, input);
 
-      expect(typeof result.data).to.eq('object');
-      expect(typeof result.message).to.eq('string');
-      expect(result.data.now).to.eq(context.now);
-      expect(result.data.env).to.eq(context.env);
-      expect(result.data.db).to.eq(context.db);
-      expect(result.data.user).to.eq(user);
-      expect(result.data.input).to.eq(input);
+      expect(typeof result).to.eq('object');
+      expect(result.now).to.eq(context.now);
+      expect(result.env).to.eq(context.env);
+      expect(result.db).to.eq(context.db);
+      expect(result.user).to.eq(user);
+      expect(result.input).to.eq(input);
     });
   });
 });

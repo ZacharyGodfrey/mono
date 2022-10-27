@@ -21,7 +21,7 @@ module.exports = async (now, processEnv, db, httpMethod, requestBody) => {
   } catch (error) {
     console.error(error);
 
-    const isDevelopment = !context || !context.env.isProduction;
+    const isDevelopment = context && !context.env.isProduction;
     const isAppError = error instanceof AppError;
     const message = isDevelopment || isAppError ? error.message : errors.default;
 
