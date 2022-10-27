@@ -1,7 +1,7 @@
 const responses = require('./responses');
 const { getUserFromToken } = require('./auth');
 
-module.exports.handler = async (context, actions, body) => {
+module.exports = async (context, actions, body) => {
   const { action: actionName, token, data } = body;
   const action = actions[actionName];
 
