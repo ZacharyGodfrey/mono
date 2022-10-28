@@ -2,10 +2,14 @@ const { hmac, encode, decode } = require('./helpers');
 const { errors: { auth: authErrors } } = require('../constants');
 const AppError = require('../app-error');
 
-const isValid = (token, secret) => {
-  const [encodedBody, hash] = token.split('.');
+const createSignature = (secret, value) => {
+  return hmac(secret, value, 'hex').toUpperCase();
+};
 
-  return hash === hmac(secret, encodedBody, 'hex');
+const isValid = (token, secret) => {
+  const [encodedBody, signature] = token.split('.');
+
+  return signature === createSignature(secret, encodedBody);
 };
 
 const parseToken = (token) => {
@@ -23,10 +27,10 @@ const isExpired = (createdAt, now, windowMilliseconds) => {
 
 module.exports.createToken = (id, now, secret) => {
   const body = JSON.stringify({ id, createdAt: now });
-  const encodedBody = encode(body, 'hex');
-  const hash = hmac(secret, encodedBody, 'hex');
+  const encodedBody = encode(body, 'hex').toUpperCase();
+  const signature = createSignature(secret, encodedBody);
 
-  return `${encodedBody}.${hash}`;
+  return `${encodedBody}.${signature}`;
 };
 
 module.exports.getUserFromToken = async (context, token) => {
