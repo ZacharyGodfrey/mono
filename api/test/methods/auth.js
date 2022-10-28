@@ -45,23 +45,27 @@ describe('methods/auth.js', () => {
 
     describe('when the token is invalid', () => {
       it('should return an error', async () => {
+        let error = null;
         const token = 'INVALID.TOKEN';
-        const result = await getUserFromToken(context, token);
 
-        expect(result.user).to.eq(null);
-        expect(result.error).to.eq(authErrors.invalidToken);
+        await getUserFromToken(context, token).catch(e => error = e);
+
+        expect(error).to.not.eq(null);
+        expect(error.message).to.eq(authErrors.invalidToken);
         expect(dbGetUserStub.called).to.eq(false);
       });
     });
 
     describe('when the token is expired', () => {
       it('should return an error', async () => {
+        let error = null;
         const createdAt = now - ((context.env.token.window + 1) * 60 * 1000);
         const token = createToken(id, createdAt, secret);
-        const result = await getUserFromToken(context, token);
 
-        expect(result.user).to.eq(null);
-        expect(result.error).to.eq(authErrors.expiredToken);
+        await getUserFromToken(context, token).catch(e => error = e);
+
+        expect(error).to.not.eq(null);
+        expect(error.message).to.eq(authErrors.expiredToken);
         expect(dbGetUserStub.called).to.eq(false);
       });
     });
@@ -82,12 +86,14 @@ describe('methods/auth.js', () => {
       it('should return an error', async () => {
         dbGetUserStub.resolves(null);
 
+        let error = null;
         const token = createToken(id, now, secret);
-        const result = await getUserFromToken(context, token);
 
+        await getUserFromToken(context, token).catch(e => error = e);
+
+        expect(error).to.not.eq(null);
+        expect(error.message).to.eq(authErrors.userNotFound);
         expect(dbGetUserStub.called).to.eq(true);
-        expect(result.user).to.eq(null);
-        expect(result.error).to.eq(authErrors.userNotFound);
       });
     });
 
