@@ -23,17 +23,13 @@ describe('methods/responses.js', () => {
       it('should return the correct structure', () => {
         const result = notFound();
 
-        expect(typeof result).to.eq('object');
-        expect(typeof result.status).to.eq('number');
-        expect(typeof result.body).to.eq('string');
         expect(result.status).to.eq(200);
+        expect(typeof result.body).to.eq('string');
 
         const body = JSON.parse(result.body);
 
-        expect(typeof body.ok).to.eq('boolean');
-        expect(typeof body.message).to.eq('string');
         expect(body.ok).to.eq(false);
-        expect(body.message).to.eq(errorMessages.routing.actionNotFound);
+        expect(body.error).to.eq(errorMessages.routing.actionNotFound);
         expect(body.data).to.eq(null);
       });
     });
@@ -49,11 +45,11 @@ describe('methods/responses.js', () => {
     });
 
     describe('when not given a token', () => {
-      it('should not return the token in the response', () => {
+      it('should return a null token in the response', () => {
         const result = notFound();
         const body = JSON.parse(result.body);
 
-        expect(body.token).to.eq(undefined);
+        expect(body.token).to.eq(null);
       });
     });
   });
@@ -63,73 +59,51 @@ describe('methods/responses.js', () => {
       it('should return the correct structure', () => {
         const result = success();
 
-        expect(typeof result).to.eq('object');
-        expect(typeof result.status).to.eq('number');
-        expect(typeof result.body).to.eq('string');
         expect(result.status).to.eq(200);
+        expect(typeof result.body).to.eq('string');
 
         const body = JSON.parse(result.body);
 
-        expect(typeof body.ok).to.eq('boolean');
-        expect(typeof body.message).to.eq('string');
         expect(body.ok).to.eq(true);
+        expect(body.message).to.eq(null);
       });
+    });
 
-      describe('when given a message', () => {
-        it('should return the message in the response', () => {
-          const message = 'Test message.';
-          const result = success(null, message);
-          const body = JSON.parse(result.body);
+    describe('when given data', () => {
+      it('should return the data in the response', () => {
+        const data = { abc: 123 };
+        const result = success(data);
+        const body = JSON.parse(result.body);
 
-          expect(body.message).to.eq(message);
-        });
+        expect(body.data).to.eql(data);
       });
+    });
 
-      describe('when not given a message', () => {
-        it('should return an empty message in the response', () => {
-          const result = success();
-          const body = JSON.parse(result.body);
+    describe('when not given data', () => {
+      it('should return null data in the response', () => {
+        const result = success();
+        const body = JSON.parse(result.body);
 
-          expect(body.message).to.eq('');
-        });
+        expect(body.data).to.eq(null);
       });
+    });
 
-      describe('when given data', () => {
-        it('should return the data in the response', () => {
-          const data = { abc: 123 };
-          const result = success(data);
-          const body = JSON.parse(result.body);
+    describe('when given a token', () => {
+      it('should return the token in the response', () => {
+        const token = 'abc.123';
+        const result = success(null, token);
+        const body = JSON.parse(result.body);
 
-          expect(body.data).to.eql(data);
-        });
+        expect(body.token).to.eq(token);
       });
+    });
 
-      describe('when not given data', () => {
-        it('should return null data in the response', () => {
-          const result = success();
-          const body = JSON.parse(result.body);
+    describe('when not given a token', () => {
+      it('should return a null token in the response', () => {
+        const result = success();
+        const body = JSON.parse(result.body);
 
-          expect(body.data).to.eq(null);
-        });
-      });
-
-      describe('when given a token', () => {
-        it('should return the token in the response', () => {
-          const token = 'abc.123';
-          const result = success(null, null, token);
-          const body = JSON.parse(result.body);
-
-          expect(body.token).to.eq(token);
-        });
-      });
-
-      describe('when not given a token', () => {
-        it('should not return the token in the response', () => {
-          const result = success();
-          const body = JSON.parse(result.body);
-
-          expect(body.token).to.eq(undefined);
-        });
+        expect(body.token).to.eq(null);
       });
     });
   });
@@ -139,36 +113,33 @@ describe('methods/responses.js', () => {
       it('should return the correct structure', () => {
         const result = error();
 
-        expect(typeof result).to.eq('object');
-        expect(typeof result.status).to.eq('number');
-        expect(typeof result.body).to.eq('string');
         expect(result.status).to.eq(200);
+        expect(typeof result.body).to.eq('string');
 
         const body = JSON.parse(result.body);
 
-        expect(typeof body.ok).to.eq('boolean');
-        expect(typeof body.message).to.eq('string');
         expect(body.ok).to.eq(false);
+        expect(typeof body.error).to.eq('string');
         expect(body.data).to.eq(null);
       });
     });
 
-    describe('when given a message', () => {
+    describe('when given an error message', () => {
       it('should return the message in the response', () => {
         const message = 'Test message.';
         const result = error(message);
         const body = JSON.parse(result.body);
 
-        expect(body.message).to.eq(message);
+        expect(body.error).to.eq(message);
       });
     });
 
-    describe('when not given a message', () => {
+    describe('when not given an error message', () => {
       it('should return the default error message in the response', () => {
         const result = error();
         const body = JSON.parse(result.body);
 
-        expect(body.message).to.eq(errorMessages.default);
+        expect(body.error).to.eq(errorMessages.default);
       });
     });
 
@@ -183,11 +154,11 @@ describe('methods/responses.js', () => {
     });
 
     describe('when not given a token', () => {
-      it('should not return the token in the response', () => {
+      it('should return a null token in the response', () => {
         const result = error();
         const body = JSON.parse(result.body);
 
-        expect(body.token).to.eq(undefined);
+        expect(body.token).to.eq(null);
       });
     });
   });

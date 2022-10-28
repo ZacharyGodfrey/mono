@@ -60,8 +60,8 @@ The following rules apply to responses:
 
 - The only HTTP status code returned is `200` (to ensure client-side promises resolve)
 - The `ok` body property is the real indication of success or failure
-- The `message` body property is a string (success message or error message depending on `ok` value)
-- The `token` body property, when present, is an updated token to be used for future requests
+- The `error` body property is a string containing an error message (always `null` when `ok` is `true`)
+- The `token` body property is an updated token to be used for future requests
 - The `data` body property is the output of the action (always `null` when `ok` is `false`)
 
 ### Example Response (Success)
@@ -69,7 +69,7 @@ The following rules apply to responses:
 ```json
 {
   "ok": true,
-  "message": "Blog post created successfully.",
+  "error": null,
   "token": "A1B2C3.D4E5F6",
   "data": {
     "id": "7a682d74-852a-4cd0-be34-40a488cdca98",
@@ -84,7 +84,7 @@ The following rules apply to responses:
 ```json
 {
   "ok": false,
-  "message": "You do not have permission to create blog posts.",
+  "error": "You do not have permission to create blog posts.",
   "token": "A1B2C3.D4E5F6",
   "data": null
 }
