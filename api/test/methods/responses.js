@@ -65,7 +65,7 @@ describe('methods/responses.js', () => {
         const body = JSON.parse(result.body);
 
         expect(body.ok).to.eq(true);
-        expect(body.message).to.eq(null);
+        expect(body.error).to.eq(null);
       });
     });
 

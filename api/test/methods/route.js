@@ -92,7 +92,7 @@ describe('methods/route.js', () => {
         const context = {};
         const actions = {};
 
-        notFoundStub.rejects(new Error('Test error.'));
+        notFoundStub.throws(new Error('Test error.'));
 
         await route(context, actions, requestBody).catch();
 
