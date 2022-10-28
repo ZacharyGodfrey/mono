@@ -106,8 +106,7 @@ describe('methods/auth.js', () => {
         const result = await getUserFromToken(context, token);
 
         expect(dbGetUserStub.called).to.eq(true);
-        expect(result.user).to.eq(dbResult);
-        expect(result.error).to.eq(null);
+        expect(result).to.eq(dbResult);
       });
     });
   });
