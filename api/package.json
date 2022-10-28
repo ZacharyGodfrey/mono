@@ -29,6 +29,9 @@
     "include": [
       "src/**/*.js"
     ],
+    "exclude": [
+      "src/constants.js"
+    ],
     "report-dir": "./_coverage",
     "reporter": [
       "html",
