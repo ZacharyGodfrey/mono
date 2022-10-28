@@ -86,18 +86,5 @@ describe('methods/route.js', () => {
         expect(successStub.called).to.eq(true);
       });
     });
-
-    describe('when an error occurs', () => {
-      it('should not call the success response method', async () => {
-        const context = {};
-        const actions = {};
-
-        notFoundStub.throws(new Error('Test error.'));
-
-        await route(context, actions, requestBody).catch();
-
-        expect(successStub.called).to.eq(false);
-      })
-    });
   });
 });
