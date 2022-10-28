@@ -22,11 +22,13 @@ describe('methods/helpers.js', () => {
         const message = 'message';
         const encoding = 'hex';
         const result = hmac(secret, message, encoding);
-        console.log(`${result.length}: ${result}`);
         const pattern = /^[0-9a-f]{64}$/;
+        const test = pattern.test(result);
+
+        console.log(`${result.length}: ${result}`);
 
         expect(typeof result).to.eq('string');
-        expect(pattern.test(result)).to.eq(true);
+        expect(test).to.eq(true);
       });
     });
   });
