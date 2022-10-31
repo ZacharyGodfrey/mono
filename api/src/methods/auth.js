@@ -1,4 +1,4 @@
-const { hmac, encode, decode } = require('./helpers');
+const { hmac, encode, decode } = require('../../../utilities/src/index');
 const { errors: { auth: authErrors } } = require('../constants');
 const AppError = require('../app-error');
 

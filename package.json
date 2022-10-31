@@ -1,5 +1,5 @@
 {
-  "name": "netlify-template",
+  "name": "mono",
   "version": "1.0.0",
   "scripts": {
     "test": "npm run test --workspaces --if-present",
@@ -8,6 +8,7 @@
   "workspaces": [
     "api",
     "client",
-    "database"
+    "database",
+    "utilities"
   ]
 }

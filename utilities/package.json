@@ -1,0 +1,59 @@
+{
+  "name": "utilities",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "nyc mocha"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.1.0",
+    "nyc": "^15.1.0"
+  },
+  "mocha": {
+    "recursive": true
+  },
+  "nyc": {
+    "all": true,
+    "check-coverage": false,
+    "skip-full": false,
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "src/constants.js"
+    ],
+    "report-dir": "./_coverage",
+    "reporter": [
+      "html",
+      "json-summary",
+      "text-summary",
+      "text"
+    ],
+    "statements": 90,
+    "branches": 90,
+    "functions": 90,
+    "lines": 90,
+    "watermarks": {
+      "lines": [
+        80,
+        90
+      ],
+      "functions": [
+        80,
+        90
+      ],
+      "branches": [
+        80,
+        90
+      ],
+      "statements": [
+        80,
+        90
+      ]
+    }
+  }
+}

@@ -9,15 +9,16 @@ const server = express();
 server.use(express.json());
 
 server.use(async (req, res, next) => {
+  const now = Date.now();
+  const { env } = process;
+  const { method: httpMethod, body: httpBody } = req;
+  const { status, body } = await api(now, env, db, httpMethod, httpBody);
+
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', '*');
   res.header('Access-Control-Allow-Methods', 'POST');
   res.header('Content-Type', 'application/json');
   res.header('x-powered-by', '');
-
-  const now = Date.now();
-  const { status, body } = await api(now, process.env, db, req.method, req.body);
-
   res.status(status).send(body);
 });
 

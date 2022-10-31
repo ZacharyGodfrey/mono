@@ -25,3 +25,12 @@ jobs:
           commit_message: Update JSON coverage report
           commit_user_name: CI Workflow
           commit_user_email: ci-workflow-actions@github.com
+      - name: Open Utilities, Install Dependencies, and Run Tests
+        run: cd utilities && npm install && npm run test
+      - name: Commit JSON Coverage Report
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: utilities/_coverage/coverage-summary.json
+          commit_message: Update JSON coverage report
+          commit_user_name: CI Workflow
+          commit_user_email: ci-workflow-actions@github.com

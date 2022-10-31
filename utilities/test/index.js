@@ -2,7 +2,7 @@ const { expect } = require('chai');
 
 const { uuid, hmac, encode, decode } = require('../../src/methods/helpers');
 
-describe('methods/helpers.js', () => {
+describe('index.js', () => {
   describe('uuid', () => {
     describe('when called', () => {
       it('should return a valid UUIDv4 string', () => {

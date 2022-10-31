@@ -5,7 +5,9 @@ const api = require('../../src/index');
 // https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html#apigateway-example-event
 module.exports.handler = async (event) => {
   const now = Date.now();
-  const { status, body } = await api(now, process.env, db, event.httpMethod, event.body);
+  const { env } = process;
+  const { httpMethod, body: httpBody } = event;
+  const { status, body } = await api(now, env, db, httpMethod, httpBody);
 
   return {
     statusCode: status,
