@@ -6,7 +6,7 @@ module.exports = async (context, actions, body) => {
   const action = actions[actionName];
 
   if (!action) {
-    return responses.notFound();
+    return responses.notFound(token);
   }
 
   const { authenticate, execute } = action;

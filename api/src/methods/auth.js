@@ -3,7 +3,7 @@ const { errors: { auth: authErrors } } = require('../constants');
 const AppError = require('../app-error');
 
 const createSignature = (secret, value) => {
-  return hmac(secret, value, 'hex').toUpperCase();
+  return hmac(secret, value, 'hex');
 };
 
 const isValid = (token, secret) => {
@@ -27,7 +27,7 @@ const isExpired = (createdAt, now, windowMilliseconds) => {
 
 module.exports.createToken = (id, now, secret) => {
   const body = JSON.stringify({ id, createdAt: now });
-  const encodedBody = encode(body, 'hex').toUpperCase();
+  const encodedBody = encode(body, 'hex');
   const signature = createSignature(secret, encodedBody);
 
   return `${encodedBody}.${signature}`;

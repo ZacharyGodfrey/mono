@@ -16,7 +16,7 @@ module.exports = async (now, processEnv, db, httpMethod, requestBody) => {
 
       case 'POST': return await route(context, actions, requestBody);
 
-      default: return responses.error(errors.routing.nonPostRequest);
+      default: return responses.error(errors.routing.nonPostRequest, requestBody.token);
     }
   } catch (error) {
     console.error(error);
@@ -25,6 +25,6 @@ module.exports = async (now, processEnv, db, httpMethod, requestBody) => {
     const isAppError = error instanceof AppError;
     const message = isDevelopment || isAppError ? error.message : errors.default;
 
-    return responses.error(message);
+    return responses.error(message, requestBody.token);
   }
 };
