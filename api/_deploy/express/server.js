@@ -1,5 +1,6 @@
 const db = require('../../../database/src/index');
 const api = require('../../src/index');
+const utilities = require('../../../utilities/src/index');
 
 const express = require('express');
 
@@ -12,7 +13,7 @@ server.use(async (req, res, next) => {
   const now = Date.now();
   const { env } = process;
   const { method: httpMethod, body: httpBody } = req;
-  const { status, body } = await api(now, env, db, httpMethod, httpBody);
+  const { status, body } = await api(now, env, db, utilities, httpMethod, httpBody);
 
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', '*');

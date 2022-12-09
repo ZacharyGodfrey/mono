@@ -1,5 +1,6 @@
 const db = require('../../../database/src/index');
 const api = require('../../src/index');
+const utilities = require('../../../utilities/src/index');
 
 // Documentation:
 // https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html#apigateway-example-event
@@ -7,7 +8,7 @@ module.exports.handler = async (event) => {
   const now = Date.now();
   const { env } = process;
   const { httpMethod, body: httpBody } = event;
-  const { status, body } = await api(now, env, db, httpMethod, httpBody);
+  const { status, body } = await api(now, env, db, utilities, httpMethod, httpBody);
 
   return {
     statusCode: status,

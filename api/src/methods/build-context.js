@@ -8,7 +8,7 @@ const tokenWindow = (window) => {
   return minutesToMilliseconds(value);
 };
 
-module.exports = (now, processEnv, db) => {
+module.exports = (now, processEnv, db, utilities) => {
   const env = {
     isProduction: processEnv.NODE_ENV === 'production',
     token: {
@@ -17,5 +17,5 @@ module.exports = (now, processEnv, db) => {
     }
   };
 
-  return { now, env, db };
+  return { now, env, db, utilities };
 };

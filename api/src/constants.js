@@ -16,5 +16,12 @@ module.exports = {
       expiredToken: 'The provided token has expired.',
       userNotFound: 'The user account does not exist.'
     }
+  },
+  email: {
+    fromAddress: 'Mono <noreply@mono-domain.com>',
+    verifyAccount: {
+      subject: 'Mono: Verify Email Address',
+      link: 'https://mono-domain.com/verify-account-email'
+    }
   }
 };

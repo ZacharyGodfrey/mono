@@ -5,11 +5,11 @@ const actions = require('./actions');
 const buildContext = require('./methods/build-context');
 const AppError = require('./app-error');
 
-module.exports = async (now, processEnv, db, httpMethod, requestBody) => {
+module.exports = async (now, processEnv, db, utilities, httpMethod, requestBody) => {
   let context = null;
 
   try {
-    context = buildContext(now, processEnv, db);
+    context = buildContext(now, processEnv, db, utilities);
 
     switch (httpMethod.toUpperCase()) {
       case 'OPTIONS': return responses.empty();
